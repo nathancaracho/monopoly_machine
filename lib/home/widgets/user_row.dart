@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_machine/comum/models/user_mode.dart';
 import 'package:monopoly_machine/comum/widgets/user_profile_image.dart';
 import 'package:monopoly_machine/home/widgets/description.dart';
 
 class UserRow extends StatelessWidget {
+  final UserModel user;
   const UserRow({
     Key key,
+    this.user,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) => Padding(
@@ -12,7 +15,7 @@ class UserRow extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            UserProfileImage(),
+            UserProfileImage(imageIndex: this.user.imageIndex),
             Flexible(
               flex: 1,
               child: Padding(
@@ -21,11 +24,14 @@ class UserRow extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Nathan Branco Carcho'),
+                    Text(this.user.name),
                     Divider(
                       color: Colors.grey[400],
                     ),
-                    Description(),
+                    Description(
+                      amount: this.user.amount.toString(),
+                      winQtd: this.user.winQtd.toString(),
+                    ),
                   ],
                 ),
               ),
