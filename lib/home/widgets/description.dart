@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Description extends StatelessWidget {
+  final String amount;
+  final String winQtd;
+
+  const Description({Key key, this.amount, this.winQtd}) : super(key: key);
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          _DescriptionItem(icon: Icons.monetization_on, text: '15.000,0'),
-          _DescriptionItem(icon: Icons.grade, text: '2'),
+          _DescriptionItem(icon: Icons.monetization_on, text: this.amount),
+          _DescriptionItem(icon: Icons.grade, text: this.winQtd),
         ],
       );
 }

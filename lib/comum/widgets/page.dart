@@ -5,8 +5,10 @@ import 'package:monopoly_machine/comum/widgets/panel.dart';
 class Page extends StatelessWidget {
   final String title;
   final Widget body;
+  final Widget bottomSheet;
 
-  const Page({Key key, this.title = 'Some Title here', this.body})
+  const Page(
+      {Key key, this.title = 'Some Title here', this.body, this.bottomSheet})
       : super(key: key);
   @override
   Widget build(BuildContext context) => Container(
@@ -28,20 +30,26 @@ class Page extends StatelessWidget {
             centerTitle: true,
             title: Text("Monopoly Machine"),
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Header(title: title),
+          body: SingleChildScrollView(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height -
+                  kToolbarHeight -
+                  MediaQuery.of(context).padding.top,
+              child: Column(
+                children: <Widget>[
+                  Flexible(
+                    flex: 1,
+                    child: Header(title: title),
+                  ),
+                  Flexible(
+                    flex: 3,
+                    child: Panel(body: body),
+                  ),
+                ],
               ),
-              Flexible(
-                flex: 3,
-                child: Panel(body: body),
-              ),
-            ],
+            ),
           ),
+          bottomSheet: bottomSheet,
         ),
       );
 }
